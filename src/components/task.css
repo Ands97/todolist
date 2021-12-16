@@ -1,0 +1,30 @@
+.task{
+    border-radius: 5px;
+    width: 50vw;
+    height: 50px;
+    background-color: #002C53;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.task p{
+    width: 95%;
+    align-self: center;
+    margin-left: 20px;
+}
+.removeButton{
+    border-radius: 0 5px 5px 0;
+    background-color: #D73838;
+    width: 8%;  
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.removeButton:hover{
+    background-color: #a50e0e;
+}

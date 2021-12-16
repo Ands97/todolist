@@ -1,0 +1,90 @@
+.taskArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.add{
+    background-color: #005C88; 
+}
+.addInput{
+    background-color: #E6F4F1; 
+    height: 50px;
+    width: 48vw;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    
+}
+.addInput input{
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    margin-left: 10px;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    font-weight: bold;
+}
+.addIcon{
+    background-color: #1DBCED;
+    width: 7.5%;
+    height: 50px;
+    position: relative;
+    left: 9.9px;
+    border-radius: 0 20px 20px 0;
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.addIcon:hover{
+    background-color: #55d2f8;
+}
+.day{
+    margin-top: 30px;
+    color: #FFF;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.line{
+    border-bottom: 1px solid #FFF;
+    width: 45vw;
+    margin-left: 10px;
+}
+.deleteAll{
+    cursor: pointer;
+    background-color: #1DBCED;
+    color: #FFF;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 10px;
+    position: relative;
+    left: 280px;
+    top: 30px;
+}
+.deleteAll:hover{
+    background-color: #55d2f8;
+}
+.priorityIcons-on{
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease 0.3s;
+    overflow: hidden;
+
+}
+.priorityIcons-off{
+    width: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease 0.3s;
+    overflow: hidden;
+
+}
