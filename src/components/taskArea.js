@@ -14,8 +14,7 @@ const TaskArea = () => {
     const [checklists, setChecklists] = useState([]);
     const [priority, setPriority] = useState(false);
     const [showButtons, setShowButtons] = useState(false);
-    const [wOn, setWOn] = useState('on');
-    const [wOff, setWOff] = useState('off');
+    
 
     
     
@@ -61,16 +60,36 @@ const TaskArea = () => {
         }
     }
 
-    const handlePriority = async(id, priority)=>{
-        if(showButtons){
+    const handleShowButton = ()=>{
+        if(!showButtons){
+            setShowButtons(true)
+        } 
+    }
+    const setPriorityMax = async(id)=>{
+        let res = await api.put(`/${id}`, {priority: 1})
+        setShowButtons(false)
+        setTimeout(()=>getChecklists(), 300)
+    }
+    const setPriorityMid = async(id)=>{
+        let res = await api.put(`/${id}`, {priority: 2})
+        setShowButtons(false)
+        setTimeout(()=>getChecklists(), 300)
+    }
+    const setPriorityMin = async(id)=>{
+        let res = await api.put(`/${id}`, {priority: 3})
+        setShowButtons(false)
+        setTimeout(()=>getChecklists(), 300)
+    }
+    const setPriorityNone = async(id, priority)=>{
+        if(priority == 4){
             setShowButtons(false)
         }else{
-            setShowButtons(true)
+            let res = await api.put(`/${id}`, {priority: 4})
+            setShowButtons(false)
+            setTimeout(()=>getChecklists(), 300)
         }
         
-        
     }
-
 
     useEffect(() => {
         getChecklists()
@@ -102,39 +121,68 @@ const TaskArea = () => {
                             </>
                         }
                         {item.done == false &&
-                            <>      
-                                        {!showButtons &&
-                                            <>
-                                                <div className={`priorityIcons-${wOn}`} onClick={()=>handlePriority(item._id, item.priority)}>
-                                                    <PriorityHighIcon/>
-                                                </div>
-                                                
-                                                <div className={`priorityIcons-${wOff}`}>
-                                                    <PriorityHighIcon style={{color: 'red'}}/>
-                                                    <PriorityHighIcon style={{color: 'yellow'}}/>
-                                                    <PriorityHighIcon style={{color: 'green'}}/>
-                                                    
-                                                </div>
-                                            </>
-                                        }
-                                        {showButtons &&
-                                            <>
-                                                <div className={`priorityIcons-${wOff}`} onClick={()=>handlePriority(item._id, item.priority)}>
-                                                    <PriorityHighIcon/>
-                                                </div>
-                                                
-                                                <div className={`priorityIcons-${wOn}`} onClick={()=>handlePriority(item._id, item.priority)}>
-                                                    <PriorityHighIcon style={{color: 'red'}}/>
-                                                    <PriorityHighIcon style={{color: 'yellow'}}/>
-                                                    <PriorityHighIcon style={{color: 'green'}}/>
-                                                    
-                                                </div>
-                                            </>
-                                        }
+                            <>   
+                                {item.priority == 4 &&
+                                    <> 
+                                        <div className={`priorityIcons`} style={{width: showButtons ? '0px' : '50px'}}
+                                            onClick={handleShowButton}>
+                                            <PriorityHighIcon/>
+                                        </div>
                                         
+                                        <div className={`priorityIcons`} style={{width: showButtons ? '120px' : '0px'}}>
+                                            <PriorityHighIcon onClick={()=>setPriorityNone(item._id, item.priority)}/>
+                                            <PriorityHighIcon style={{color: 'red'}} onClick={()=>setPriorityMax(item._id)}/>
+                                            <PriorityHighIcon style={{color: 'yellow'}}onClick={()=>setPriorityMid(item._id)}/>
+                                            <PriorityHighIcon style={{color: 'green'}}onClick={()=>setPriorityMin(item._id)}/>    
+                                        </div>
+                                    </> 
+                                }
+                                {item.priority == 3 &&
+                                    <> 
+                                        <div className={`priorityIcons`} style={{width: showButtons ? '0px' : '50px'}}
+                                            onClick={handleShowButton}>
+                                            <PriorityHighIcon style={{color: 'green'}}/>
+                                        </div>
                                         
-                                    
+                                        <div className={`priorityIcons`} style={{width: showButtons ? '120px' : '0px'}}>
+                                            <PriorityHighIcon onClick={()=>setPriorityNone(item._id)}/>
+                                            <PriorityHighIcon style={{color: 'red'}} onClick={()=>setPriorityMax(item._id)}/>
+                                            <PriorityHighIcon style={{color: 'yellow'}}onClick={()=>setPriorityMid(item._id)}/>
+                                            <PriorityHighIcon style={{color: 'green'}}onClick={()=>setPriorityMin(item._id)}/>    
+                                        </div>
+                                    </>
+                                }
+                                {item.priority == 2 &&
+                                    <> 
+                                        <div className={`priorityIcons`} style={{width: showButtons ? '0px' : '50px'}}
+                                            onClick={handleShowButton}>
+                                            <PriorityHighIcon style={{color: 'yellow'}}/>
+                                        </div>
                                         
+                                        <div className={`priorityIcons`} style={{width: showButtons ? '120px' : '0px'}}>
+                                            <PriorityHighIcon onClick={()=>setPriorityNone(item._id)}/>
+                                            <PriorityHighIcon style={{color: 'red'}} onClick={()=>setPriorityMax(item._id)}/>
+                                            <PriorityHighIcon style={{color: 'yellow'}}onClick={()=>setPriorityMid(item._id)}/>
+                                            <PriorityHighIcon style={{color: 'green'}}onClick={()=>setPriorityMin(item._id)}/>    
+                                        </div>
+                                    </>
+                                }
+                                {item.priority == 1 &&
+                                    <> 
+                                        <div className={`priorityIcons`} style={{width: showButtons ? '0px' : '50px'}}
+                                            onClick={handleShowButton}>
+                                            <PriorityHighIcon style={{color: 'red'}}/>
+                                        </div>
+                                        
+                                        <div className={`priorityIcons`} style={{width: showButtons ? '120px' : '0px'}}>
+                                            <PriorityHighIcon onClick={()=>setPriorityNone(item._id)}/>
+                                            <PriorityHighIcon style={{color: 'red'}} onClick={()=>setPriorityMax(item._id)}/>
+                                            <PriorityHighIcon style={{color: 'yellow'}}onClick={()=>setPriorityMid(item._id)}/>
+                                            <PriorityHighIcon style={{color: 'green'}}onClick={()=>setPriorityMin(item._id)}/>    
+                                        </div>
+                                    </>
+                                }    
+                                
                                     <p onClick={()=>handleDone(item.done, item._id)}>{item.title}</p>
                                     <div className='removeButton' onClick={()=>removeTask(item._id)}>
                                         <DeleteIcon />

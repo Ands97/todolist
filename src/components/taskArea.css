@@ -70,17 +70,8 @@
 .deleteAll:hover{
     background-color: #55d2f8;
 }
-.priorityIcons-on{
-    width: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all ease 0.3s;
-    overflow: hidden;
-
-}
-.priorityIcons-off{
-    width: 0px;
+.priorityIcons{
+    width: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
